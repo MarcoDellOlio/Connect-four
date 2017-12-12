@@ -8,12 +8,18 @@ gameData = {
     
     createBoardGrid : function () {
         for(let i = 0; i<7; i++){
-        this.boardGrid.push([]);
+        this.boardGrid.push(new Array(6).fill(0,0, 6));
         }
+        
     },
 
     updateCoinInDataBase : function (event) {
-        gameData.boardGrid[$(event.target).index()].push(gameData.playerNumber); 
+       for(let i = 0; i < gameData.boardGrid[$(event.target).index()].length; i++) {
+            if (gameData.boardGrid[$(event.target).index()][i] === 0) {
+                gameData.boardGrid[$(event.target).index()][i] = gameData.playerNumber;
+                break;
+            }
+        }
     },
 
     generateRows : function () {
@@ -62,7 +68,7 @@ gameInteraction = {
     },
 
     checkIfTheColumnIsFull : function () {
-        if (gameData.boardGrid[$(event.target).index()].length < 6 ) {
+        if (gameData.boardGrid[$(event.target).index()].lastIndexOf(0) === gameData.boardGrid[$(event.target).index()].length-1)  {
             return true;
         } 
     },
@@ -116,13 +122,12 @@ $( document ).ready(function() {
     // GAME SETUP
     gameData.createBoardGrid();
     gameDisplay.showBoardGrid();
-    gameData.generateRows();
 
     //EVENT LISTENERS
     $(document).click(function (event) {
         gameInteraction.addCoinOnTheScreen();
-        
         gameInteraction.checkForWin();
+        console.log(gameData.generateRows());
     
         
     })
