@@ -1,5 +1,4 @@
 gameData = {
-    column : [],
     boardGrid : [],
     round : 0,
     player1Score : 0,
@@ -8,13 +7,15 @@ gameData = {
     
     createBoardGrid : function () {
         for(let i = 0; i<7; i++){
-        this.boardGrid.push(this.column);
+        this.boardGrid.push([]);
         }
     },
 
     updateCoinInDataBase : function (event) {
-        gameData.boardGrid[$(event.target).index()].unshift(gameData.playerNumber); //WHYYYYYY?????
-        console.log(gameData.boardGrid);
+        gameData.boardGrid[$(event.target).index()].push(gameData.playerNumber); 
+        console.log(gameData.boardGrid[$(event.target).index()])
+        console.log($(event.target).index());
+        console.log(this.boardGrid)
     }
 
     
