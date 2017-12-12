@@ -29,9 +29,15 @@ gameInteraction = {
         }
     },
 
+    checkIfTheColumnIsFull : function () {
+        if (gameData.boardGrid[$(event.target).index()].length < 6 ) {
+            return true;
+        } 
+    },
+
     addCoinOnTheScreen : function () {
         $(document).click(function(event) {
-            if (gameInteraction.checkIfElementIsAColumn()) {
+            if (gameInteraction.checkIfElementIsAColumn() && gameInteraction.checkIfTheColumnIsFull()) {
                 if (gameData.playerNumber === 1) {
                     $(event.target).append('<div class="coinPlayer1">box</div>');
                     gameData.updateCoinInDataBase(event);
