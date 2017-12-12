@@ -1,7 +1,6 @@
 //##############GAME LOGIC AND ARCHITECTURE#################
 gameData = {
     boardGrid : [],
-    // rows: this.generateRows(),
     round : 0,
     player1Score : 0,
     player2Score : 0,
@@ -18,20 +17,24 @@ gameData = {
     },
 
     generateRows : function () {
-        return gameData.boardGrid[0].map((col, i) => gameData.boardGrid.map(row => row[i]))
+        return gameData.boardGrid.map((col, i) => gameData.boardGrid.map(row => row[i]))
     },
 
     scanAllColumns : function () {         
         gameData.boardGrid.forEach(function (column) {
             if (column.join('').match(gameData.playerNumber.toString().repeat(4))) {
-                console.log(true)
+                console.log(true);
             }
         });
 
     },
 
     scanAllRows : function () {
-
+        gameData.generateRows().forEach(function (column) {
+            if (column.join('').match(gameData.playerNumber.toString().repeat(4))) {
+                console.log(true);
+            }
+        });
     },
 
     checkAllLeftDiagonal : function () {
@@ -79,6 +82,7 @@ gameInteraction = {
 
     checkForWin : function () {
         gameData.scanAllColumns();
+        gameData.scanAllRows();
     }
     
 }
@@ -112,11 +116,14 @@ $( document ).ready(function() {
     // GAME SETUP
     gameData.createBoardGrid();
     gameDisplay.showBoardGrid();
+    gameData.generateRows();
 
     //EVENT LISTENERS
     $(document).click(function (event) {
         gameInteraction.addCoinOnTheScreen();
+        
         gameInteraction.checkForWin();
+    
         
     })
 
