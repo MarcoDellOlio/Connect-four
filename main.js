@@ -1,16 +1,24 @@
 //##############GAME LOGIC AND ARCHITECTURE#################
 gameData = {
     boardGrid : [],
+    rows : [],
     round : 0,
     player1Score : 0,
     player2Score : 0,
-    playerNumber : 1,
+    playerNumber : 2,
     
     createBoardGrid : function () {
         for(let i = 0; i<7; i++){
         this.boardGrid.push([]);
         }
     },
+
+    // defineRows : function () {
+    //     for (let i = 0; i>6; i++) {
+    //         for (let j = 0)
+    //     }
+
+    // },
 
     updateCoinInDataBase : function (event) {
         gameData.boardGrid[$(event.target).index()].push(gameData.playerNumber); 
@@ -40,7 +48,7 @@ gameData = {
     },
 
     checkForWin : function () {
-        // gameData.scanAllColumns();
+        gameData.scanAllColumns();
     }
 
     
@@ -69,6 +77,7 @@ gameInteraction = {
                 }
                 else {
                     $(event.target).append('<div class="coinPlayer2">box</div>');
+                    gameData.updateCoinInDataBase(event);
                 }   
             }       
     },
@@ -76,7 +85,8 @@ gameInteraction = {
     onClick : function () {
         $(document).click(function(event) {
         gameInteraction.addCoinOnTheScreen();
-        gameData.scanAllColumns();
+        gameData.checkForWin();
+        
         })
     }
 }
