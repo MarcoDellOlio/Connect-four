@@ -14,23 +14,33 @@ gameData = {
 
     updateCoinInDataBase : function (event) {
         gameData.boardGrid[$(event.target).index()].unshift(gameData.playerNumber); //WHYYYYYY?????
-        console.log(gameData.boardGrid[2][2]);
+        console.log(gameData.boardGrid);
     }
 
     
 }
 
 gameInteraction = {
+    
+    checkIfElementIsAColumn : function () {
+        if ($(event.target).attr("class") === "column") {
+            return true;
+        }
+    },
 
     addCoinOnTheScreen : function () {
         $(document).click(function(event) {
-            if (gameData.playerNumber === 1) {
-                $(event.target).append('<div class="coinPlayer1">box</div>');
-                gameData.updateCoinInDataBase(event);
+            if (gameInteraction.checkIfElementIsAColumn()) {
+                if (gameData.playerNumber === 1) {
+                    $(event.target).append('<div class="coinPlayer1">box</div>');
+                    gameData.updateCoinInDataBase(event);
+                }
+                else {
+                    $(event.target).append('<div class="coinPlayer2">box</div>');
+                }
             }
-            else {
-                $(event.target).append('<div class="coinPlayer2">box</div>');
-            }
+
+            
         })
     }
 }
