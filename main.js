@@ -1,4 +1,4 @@
-connectFour = {
+gameData = {
     column : [],
     boardGrid : [],
     round : 0,
@@ -13,22 +13,36 @@ connectFour = {
         for(let i = 0; i<7; i++){
         this.boardGrid.push(this.column);
         }
-    },
+    }
+
+    
+}
+
+gameInteraction = {
+
+    addCoinOnTheScreen : function () {
+        $(document).click(function(event) {
+            $(event.target).append('<div class="cell">box</div>');
+        })
+    }
+}
+
+gameDisplay = {
 
     showBoardGrid : function () {
         for(let i = 0; i < 7; i++){
           $('.gameboard').append('<div class="column"></div>');
         }
-    },
+    }  
 
-   
 }
-
 
 
 $( document ).ready(function() {
     console.log( "ready!" );
-    connectFour.createBoardGrid();
-    connectFour.showBoardGrid();
+
+    gameData.createBoardGrid();
+    gameDisplay.showBoardGrid();
+    gameInteraction.addCoinOnTheScreen(event);
     console.log($('.column'));
 });
