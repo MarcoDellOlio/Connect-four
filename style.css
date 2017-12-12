@@ -8,13 +8,20 @@
 }
 
 .gameboard {
+    display: flex;
     grid-area: 2 / 2 / 3 / 2;
     background-color: grey;
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(6, 1fr);
 }
 
-.cell {
+.column {
+    display: flex;
     background-color: red;
+    width: 10%;
+    height: 100%;
+    flex-grow: 1;
+
+}
+.cell {
+    background-color: green;
+    flex-grow: 1;
 }
