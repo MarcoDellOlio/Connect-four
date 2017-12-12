@@ -1,3 +1,4 @@
+//##############GAME LOGIC AND ARCHITECTURE#################
 gameData = {
     boardGrid : [],
     round : 0,
@@ -13,14 +14,39 @@ gameData = {
 
     updateCoinInDataBase : function (event) {
         gameData.boardGrid[$(event.target).index()].push(gameData.playerNumber); 
-        console.log(gameData.boardGrid[$(event.target).index()])
-        console.log($(event.target).index());
-        console.log(this.boardGrid)
+    },
+
+    scanAllColumns : function () {         
+        gameData.boardGrid.forEach(function (column) {
+            if (column.join('').match(gameData.playerNumber.toString().repeat(4))) {
+                console.log(true)
+            }
+        });
+
+    },
+
+    scanAllRows : function () {
+
+    },
+
+    checkAllLeftDiagonal : function () {
+        
+    },
+
+
+
+    checkAllLeftDiagonal : function () {
+
+    },
+
+    checkForWin : function () {
+        // gameData.scanAllColumns();
     }
 
     
+    
 }
-
+//###################OBJECT IN CHARGE TO INTERACT WITH THE USER#########################
 gameInteraction = {
     
     checkIfElementIsAColumn : function () {
@@ -36,7 +62,6 @@ gameInteraction = {
     },
 
     addCoinOnTheScreen : function () {
-        $(document).click(function(event) {
             if (gameInteraction.checkIfElementIsAColumn() && gameInteraction.checkIfTheColumnIsFull()) {
                 if (gameData.playerNumber === 1) {
                     $(event.target).append('<div class="coinPlayer1">box</div>');
@@ -44,21 +69,19 @@ gameInteraction = {
                 }
                 else {
                     $(event.target).append('<div class="coinPlayer2">box</div>');
-                }
-            }
+                }   
+            }       
+    },
 
-            
+    onClick : function () {
+        $(document).click(function(event) {
+        gameInteraction.addCoinOnTheScreen();
+        gameData.scanAllColumns();
         })
     }
 }
 
-
-
-
-
-
-
-
+//##################OBJECT IN CHARGE TO SHOW STUFF################################
 gameDisplay = {
 
     showBoardGrid : function () {
@@ -77,11 +100,16 @@ gameDisplay = {
 
 
 
+
+
+//###############INVOKING ZONE######################
+
+
 $( document ).ready(function() {
     console.log( "ready!" );
-
     gameData.createBoardGrid();
     gameDisplay.showBoardGrid();
-    gameInteraction.addCoinOnTheScreen(event);
-    console.log($(gameData.boardGrid));
+    gameInteraction.onClick(event);
 });
+
+//###############INVOKING ZONE######################
