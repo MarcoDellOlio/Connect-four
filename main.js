@@ -4,7 +4,7 @@ gameData = {
     round : 0,
     player1Score : 0,
     player2Score : 0,
-    playerNumber : 1,
+    playerNumber : 2,
     
     createBoardGrid : function () {
         for(let i=0; i<6; i++){
@@ -22,7 +22,12 @@ gameInteraction = {
 
     addCoinOnTheScreen : function () {
         $(document).click(function(event) {
-            $(event.target).append('<div class="cell">box</div>');
+            if (gameData.playerNumber === 1) {
+                $(event.target).append('<div class="coinPlayer1">box</div>');
+            }
+            else {
+                $(event.target).append('<div class="coinPlayer2">box</div>');
+            }
         })
     }
 }
