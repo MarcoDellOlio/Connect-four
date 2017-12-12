@@ -1,7 +1,7 @@
 //##############GAME LOGIC AND ARCHITECTURE#################
 gameData = {
     boardGrid : [],
-    rows : [],
+    // rows: this.generateRows(),
     round : 0,
     player1Score : 0,
     player2Score : 0,
@@ -13,15 +13,12 @@ gameData = {
         }
     },
 
-    // defineRows : function () {
-    //     for (let i = 0; i>6; i++) {
-    //         for (let j = 0)
-    //     }
-
-    // },
-
     updateCoinInDataBase : function (event) {
         gameData.boardGrid[$(event.target).index()].push(gameData.playerNumber); 
+    },
+
+    generateRows : function () {
+        return gameData.boardGrid[0].map((col, i) => gameData.boardGrid.map(row => row[i]))
     },
 
     scanAllColumns : function () {         
@@ -45,11 +42,9 @@ gameData = {
 
     checkAllLeftDiagonal : function () {
 
-    },
-
-    checkForWin : function () {
-        gameData.scanAllColumns();
     }
+
+    
 
     
     
@@ -82,13 +77,10 @@ gameInteraction = {
             }       
     },
 
-    onClick : function () {
-        $(document).click(function(event) {
-        gameInteraction.addCoinOnTheScreen();
-        gameData.checkForWin();
-        
-        })
+    checkForWin : function () {
+        gameData.scanAllColumns();
     }
+    
 }
 
 //##################OBJECT IN CHARGE TO SHOW STUFF################################
@@ -103,7 +95,6 @@ gameDisplay = {
     showScorNumbers : function () {
         $('.score.left').append('<h1 class"number left"></div>');
     },
-
 }
 
 
@@ -117,9 +108,22 @@ gameDisplay = {
 
 $( document ).ready(function() {
     console.log( "ready!" );
+
+    // GAME SETUP
     gameData.createBoardGrid();
     gameDisplay.showBoardGrid();
-    gameInteraction.onClick(event);
+
+    //EVENT LISTENERS
+    $(document).click(function (event) {
+        gameInteraction.addCoinOnTheScreen();
+        gameInteraction.checkForWin();
+        
+    })
+
+    
+
+
+
 });
 
 //###############INVOKING ZONE######################
