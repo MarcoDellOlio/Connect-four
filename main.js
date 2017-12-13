@@ -6,6 +6,7 @@ gameData = {
     player2Score : 0,
     playerNumber : 1,
     win : false,
+    emily : false,
     
     createBoardGrid : function () {
         for(let i = 0; i<7; i++){
@@ -157,7 +158,7 @@ gameDisplay = {
 
     showBoardGrid : function () {
         for(let i = 0; i < 7; i++){
-          $('.gameboard').append('<div class="column"></div>');
+          $('.gameboard').append('<div class="column hvr-float-shadow"></div>');
         }
     },
 
@@ -204,7 +205,7 @@ $( document ).ready(function() {
     gameData.createBoardGrid();
     gameDisplay.showBoardGrid();
     gameDisplay.displayPlayersScore();
-    gameDisplay.playSoundtrack();
+    gameDisplay.playSoundtrack(); //Add Emily
 
     //EVENT LISTENERS
     $(document).click(function (event) {
