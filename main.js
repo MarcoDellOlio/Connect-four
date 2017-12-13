@@ -44,13 +44,15 @@ gameData = {
     },
 
     scanAllRightDiagonal : function () {
-        for(let i = 0; i < 6 ; i++) {
-            for(let j = 0; j < 5; j++) {
-                if (this.boardGrid[i][j] === this.playerNumber) {
-                    if (this.boardGrid[i+1][j+1] === this.playerNumber && i < 7 && j < 6) {
-                        if (this.boardGrid[i+2][j+2] === this.playerNumber && i < 7 && j < 6) {
-                            if (this.boardGrid[i+3][j+3] === this.playerNumber && i < 7 && j < 6) {
-                                gameData.win = true;
+        for(let column = 0; column <= 6 ; column++) {
+            for(let row = 0; row <= 5; row++) {
+                if (column <= 3 && row <= 2) {
+                    if (this.boardGrid[column][row] === this.playerNumber) {
+                        if (this.boardGrid[column+1][row+1] === this.playerNumber) {
+                            if (this.boardGrid[column+2][row+2] === this.playerNumber) {
+                                if (this.boardGrid[column+3][row+3] === this.playerNumber) {
+                                    gameData.win = true;
+                                }
                             }
                         }
                     }
@@ -62,14 +64,15 @@ gameData = {
 
 
     scanAllLeftDiagonal : function () {
-        for(let i = 6; i > 0 ; i--) {
-            for(let j = 0; j < 5; j++) {
-                if (this.boardGrid[i][j] === this.playerNumber) {
-                    console.log(this.playerNumber);
-                    if (this.boardGrid[i-1][j+1] === this.playerNumber) {
-                        if (this.boardGrid[i-2][j+2] === this.playerNumber) {
-                            if (this.boardGrid[i-3][j+3] === this.playerNumber) {
-                                gameData.win = true;
+        for(let column = 0; column <= 6 ; column++) {
+            for(let row = 0; row <= 5; row++) {
+                if (column >= 3 && row <= 2) {
+                    if (this.boardGrid[column][row] === this.playerNumber) {
+                        if (this.boardGrid[column-1][row+1] === this.playerNumber) {
+                            if (this.boardGrid[column-2][row+2] === this.playerNumber) {
+                                if (this.boardGrid[column-3][row+3] === this.playerNumber) {
+                                    gameData.win = true;
+                                }
                             }
                         }
                     }
@@ -81,7 +84,7 @@ gameData = {
     resetBoardGrid : function () {
         gameData.boardGrid = [];
         gameData.createBoardGrid();
-        }
+    }
     
 
     
@@ -132,6 +135,7 @@ gameInteraction = {
         gameData.resetBoardGrid();
         console.log(gameData.boardGrid)
         gameDisplay.deleteCoinsFromScreen();
+        gameData.win = false;
         gameDisplay.showVictoryAlert();
     },
 
