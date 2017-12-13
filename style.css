@@ -21,31 +21,29 @@
     background-color: white;
     width: 10%;
     flex-grow: 1;
-    border: solid 1px black;
+    /* border: solid 1px black; */
 
 }
-
-.coinPlayer1 {
+.coin {
     width: 50%;
     padding-top: 50%;
     height: auto;
     border-radius: 50%;
     margin-bottom: 10%;
-    -webkit-animation-name: greenPulse;
-    -webkit-animation-duration: 2s;
-    -webkit-animation-iteration-count: infinite;
+}
+
+
+#coinPlayer1 {
+    
+    -webkit-animation-name: greenPulse, bounceInDown;
+    -webkit-animation-duration: 2s, 1s;
+    -webkit-animation-iteration-count: infinite, 1;
   }
 
-.coinPlayer2 {
-    background-color: goldenrod;
-    width: 50%;
-    padding-top: 50%;
-    height: auto;
-    border-radius: 50%;
-    margin-bottom: 10%;
-    -webkit-animation-name: bluePulse;
-    -webkit-animation-duration: 2s;
-    -webkit-animation-iteration-count: infinite;
+#coinPlayer2 {
+    -webkit-animation-name: bluePulse, bounceInDown;
+    -webkit-animation-duration: 2s, 1s;
+    -webkit-animation-iteration-count: infinite, 1;
 }
 /* GAMEBOARD ELEMENTS */
 

@@ -110,11 +110,11 @@ gameInteraction = {
     addCoinOnTheScreen : function () {
             if (gameInteraction.checkIfElementIsAColumn() && gameInteraction.checkIfTheColumnIsFull()) {
                 if (gameData.playerNumber === 1) {
-                    $('<div style="display: none;" class="coinPlayer1"></div>').appendTo($(event.target)).slideDown("fast");
+                    $(event.target).append('<div class="coin" id="coinPlayer1"></div>');
                     gameData.updateCoinInDataBase(event);
                 }
                 else {
-                    $(event.target).append('<div class="coinPlayer2"></div>');
+                    $(event.target).append('<div class="coin" id="coinPlayer2"></div>');
                     gameData.updateCoinInDataBase(event);
                 }   
             }       
@@ -136,7 +136,7 @@ gameInteraction = {
         console.log(gameData.boardGrid)
         gameDisplay.deleteCoinsFromScreen();
         gameData.win = false;
-        gameDisplay.showVictoryAlert();
+        gameDisplay.displayPlayersScore();
     },
 
     updatePlayerScore : function () {
@@ -175,10 +175,6 @@ gameDisplay = {
         $('.score.left').append('<h1 class"number left"></div>');
     },
 
-    showVictoryAlert : function () {
-        alert(`Good Job Player ${gameData.playerNumber} you won!`);
-    },
-
     deleteCoinsFromScreen : function () {
         $('.column').empty();
     },
@@ -204,7 +200,7 @@ $( document ).ready(function() {
     gameData.createBoardGrid();
     gameDisplay.showBoardGrid();
     gameDisplay.displayPlayersScore();
-    //gameDisplay.playSoundtrack();
+    gameDisplay.playSoundtrack();
 
     //EVENT LISTENERS
     $(document).click(function (event) {

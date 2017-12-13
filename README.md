@@ -31,3 +31,4 @@ https://www.figma.com/file/JY48bCqfa6sCaAhAYPRd4HrG/Connect-4-Game-restart
 References
 
 Glowing effect for coins https://zurb.com/playground/radioactive-buttons
+SoundTrack : "Una mattina" (A morning) by Ludovico Einaudi
