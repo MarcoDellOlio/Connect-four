@@ -8,7 +8,7 @@ gameData = {
     
     createBoardGrid : function () {
         for(let i = 0; i<7; i++){
-        this.boardGrid.push(new Array(6).fill(0,0, 6));
+        this.boardGrid.push(new Array(6).fill(0));
         }
         
     },
@@ -23,7 +23,7 @@ gameData = {
     },
 
     generateRows : function () {
-        return gameData.boardGrid.map((col, i) => gameData.boardGrid.map(row => row[i]))
+        return gameData.boardGrid[0].map((col, i) => gameData.boardGrid.map(row => row[i]))
     },
 
     scanAllColumns : function () {         
@@ -32,7 +32,6 @@ gameData = {
                 console.log(true);
             }
         });
-
     },
 
     scanAllRows : function () {
@@ -43,13 +42,25 @@ gameData = {
         });
     },
 
-    checkAllLeftDiagonal : function () {
-        
+    scanAllRightDiagonal : function () {
+        for(let i = 0; i < 6 ; i++) {
+            for(let j = 0; j < 5; j++) {
+                if (this.boardGrid[i][j] === this.playerNumber) {
+                    if (this.boardGrid[i+1][j+1] === this.playerNumber) {
+                        if (this.boardGrid[i+2][j+2] === this.playerNumber) {
+                            if (this.boardGrid[i+3][j+3] === this.playerNumber) {
+                                console.log(true);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     },
 
 
 
-    checkAllLeftDiagonal : function () {
+    scanAllLeftDiagonal : function () {
 
     }
 
@@ -89,6 +100,7 @@ gameInteraction = {
     checkForWin : function () {
         gameData.scanAllColumns();
         gameData.scanAllRows();
+        gameData.scanAllRightDiagonal();
     }
     
 }
@@ -127,7 +139,6 @@ $( document ).ready(function() {
     $(document).click(function (event) {
         gameInteraction.addCoinOnTheScreen();
         gameInteraction.checkForWin();
-        console.log(gameData.generateRows());
     
         
     })
