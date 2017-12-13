@@ -4,7 +4,8 @@ gameData = {
     round : 0,
     player1Score : 0,
     player2Score : 0,
-    playerNumber : 2,
+    playerNumber : 1,
+    
     
     createBoardGrid : function () {
         for(let i = 0; i<7; i++){
@@ -29,7 +30,7 @@ gameData = {
     scanAllColumns : function () {         
         gameData.boardGrid.forEach(function (column) {
             if (column.join('').match(gameData.playerNumber.toString().repeat(4))) {
-                console.log(true);
+                gameDisplay.showVictoryAlert();
             }
         });
     },
@@ -37,7 +38,7 @@ gameData = {
     scanAllRows : function () {
         gameData.generateRows().forEach(function (column) {
             if (column.join('').match(gameData.playerNumber.toString().repeat(4))) {
-                console.log(true);
+                setTimeout(gameDisplay.showVictoryAlert(),1000);                
             }
         });
     },
@@ -46,10 +47,10 @@ gameData = {
         for(let i = 0; i < 6 ; i++) {
             for(let j = 0; j < 5; j++) {
                 if (this.boardGrid[i][j] === this.playerNumber) {
-                    if (this.boardGrid[i+1][j+1] === this.playerNumber) {
-                        if (this.boardGrid[i+2][j+2] === this.playerNumber) {
-                            if (this.boardGrid[i+3][j+3] === this.playerNumber) {
-                                console.log(true);
+                    if (this.boardGrid[i+1][j+1] === this.playerNumber && i < 7 && j < 6) {
+                        if (this.boardGrid[i+2][j+2] === this.playerNumber && i < 7 && j < 6) {
+                            if (this.boardGrid[i+3][j+3] === this.playerNumber && i < 7 && j < 6) {
+                                gameDisplay.showVictoryAlert();
                             }
                         }
                     }
@@ -61,7 +62,20 @@ gameData = {
 
 
     scanAllLeftDiagonal : function () {
-
+        for(let i = 6; i > 0 ; i--) {
+            for(let j = 0; j < 5; j++) {
+                if (this.boardGrid[i][j] === this.playerNumber) {
+                    console.log(this.playerNumber);
+                    if (this.boardGrid[i-1][j+1] === this.playerNumber) {
+                        if (this.boardGrid[i-2][j+2] === this.playerNumber) {
+                            if (this.boardGrid[i-3][j+3] === this.playerNumber) {
+                                gameDisplay.showVictoryAlert();
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     
@@ -101,8 +115,13 @@ gameInteraction = {
         gameData.scanAllColumns();
         gameData.scanAllRows();
         gameData.scanAllRightDiagonal();
-    }
-    
+        gameData.scanAllLeftDiagonal();
+    },
+
+    ifNotWin : function () {
+        gameData.playerNumber = gameData.playerNumber === 1 ? 2:1;
+        gameData.round++
+    },
 }
 
 //##################OBJECT IN CHARGE TO SHOW STUFF################################
@@ -117,6 +136,10 @@ gameDisplay = {
     showScorNumbers : function () {
         $('.score.left').append('<h1 class"number left"></div>');
     },
+
+    showVictoryAlert : function () {
+        alert(`Good Job Player ${gameData.playerNumber} you won!`);
+    }
 }
 
 
@@ -138,9 +161,8 @@ $( document ).ready(function() {
     //EVENT LISTENERS
     $(document).click(function (event) {
         gameInteraction.addCoinOnTheScreen();
-        gameInteraction.checkForWin();
-    
-        
+        setTimeout (gameInteraction.checkForWin(), 2000);
+        gameInteraction.ifNotWin();
     })
 
     
