@@ -129,14 +129,11 @@ gameInteraction = {
 
     ifWin : function () {
         gameData.round = 0;
-        console.log('game round is ' + gameData.round);
         gameInteraction.updatePlayerScore();
-        console.log('the player 1 score is '+ gameData.player1Score);
         gameData.resetBoardGrid();
-        console.log(gameData.boardGrid)
-        gameDisplay.deleteCoinsFromScreen();
+        setTimeout(gameDisplay.deleteCoinsFromScreen, 1500);
+        setTimeout(gameDisplay.displayPlayersScore,2000);
         gameData.win = false;
-        gameDisplay.displayPlayersScore();
     },
 
     updatePlayerScore : function () {
@@ -168,6 +165,13 @@ gameDisplay = {
    displayPlayersScore : function () {
        $('#player1ScoreNumber').text(`${gameData.player1Score}`);
        $('#player2AIScoreNumber').text(`${gameData.player2Score}`);
+       if (gameData.player1Score > 0) {
+           $('#player1ScoreNumber').css('color','#91bd09');
+       }
+
+       if (gameData.player2Score > 0) {
+        $('#player2AIScoreNumber').css('color','#3b4ad4');
+    }
    },
     
 
@@ -206,7 +210,6 @@ $( document ).ready(function() {
     $(document).click(function (event) {
         gameInteraction.addCoinOnTheScreen();
         gameInteraction.checkForWin();
-        console.log(gameData.win)
         if (gameData.win === true) {
             gameInteraction.ifWin();
         }
