@@ -5,7 +5,7 @@ gameData = {
     player1Score : 0,
     player2Score : 0,
     playerNumber : 1,
-    
+    win : false,
     
     createBoardGrid : function () {
         for(let i = 0; i<7; i++){
@@ -30,7 +30,7 @@ gameData = {
     scanAllColumns : function () {         
         gameData.boardGrid.forEach(function (column) {
             if (column.join('').match(gameData.playerNumber.toString().repeat(4))) {
-                gameDisplay.showVictoryAlert();
+                gameData.win = true;
             }
         });
     },
@@ -38,7 +38,7 @@ gameData = {
     scanAllRows : function () {
         gameData.generateRows().forEach(function (column) {
             if (column.join('').match(gameData.playerNumber.toString().repeat(4))) {
-                setTimeout(gameDisplay.showVictoryAlert(),1000);                
+                gameData.win = true;              
             }
         });
     },
@@ -50,7 +50,7 @@ gameData = {
                     if (this.boardGrid[i+1][j+1] === this.playerNumber && i < 7 && j < 6) {
                         if (this.boardGrid[i+2][j+2] === this.playerNumber && i < 7 && j < 6) {
                             if (this.boardGrid[i+3][j+3] === this.playerNumber && i < 7 && j < 6) {
-                                gameDisplay.showVictoryAlert();
+                                gameData.win = true;
                             }
                         }
                     }
@@ -69,7 +69,7 @@ gameData = {
                     if (this.boardGrid[i-1][j+1] === this.playerNumber) {
                         if (this.boardGrid[i-2][j+2] === this.playerNumber) {
                             if (this.boardGrid[i-3][j+3] === this.playerNumber) {
-                                gameDisplay.showVictoryAlert();
+                                gameData.win = true;
                             }
                         }
                     }
@@ -118,6 +118,22 @@ gameInteraction = {
         gameData.scanAllLeftDiagonal();
     },
 
+    ifWin : function () {
+        gameData.round = 0;
+        gameInteraction.updatePlayerScore();
+        gameDisplay.showVictoryAlert();
+    },
+
+    updatePlayerScore : function () {
+        if (gameData.playerNumber === 1) {
+            gameData.player1Score++;
+        }
+
+        else {
+            gameData.player2Score++;
+        }
+    },
+
     ifNotWin : function () {
         gameData.playerNumber = gameData.playerNumber === 1 ? 2:1;
         gameData.round++
@@ -161,8 +177,14 @@ $( document ).ready(function() {
     //EVENT LISTENERS
     $(document).click(function (event) {
         gameInteraction.addCoinOnTheScreen();
-        setTimeout (gameInteraction.checkForWin(), 2000);
-        gameInteraction.ifNotWin();
+        gameInteraction.checkForWin();
+        console.log(gameData.win)
+        if (gameData.win === true) {
+            gameInteraction.ifWin();
+        }
+        else {
+            gameInteraction.ifNotWin();
+        }
     })
 
     
