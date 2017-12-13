@@ -110,11 +110,11 @@ gameInteraction = {
     addCoinOnTheScreen : function () {
             if (gameInteraction.checkIfElementIsAColumn() && gameInteraction.checkIfTheColumnIsFull()) {
                 if (gameData.playerNumber === 1) {
-                    $(event.target).append('<div class="coinPlayer1">box</div>');
+                    $(event.target).append('<div class="coinPlayer1"></div>');
                     gameData.updateCoinInDataBase(event);
                 }
                 else {
-                    $(event.target).append('<div class="coinPlayer2">box</div>');
+                    $(event.target).append('<div class="coinPlayer2"></div>');
                     gameData.updateCoinInDataBase(event);
                 }   
             }       

@@ -3,7 +3,7 @@
     height: 100vh;
     display: grid;
     grid-template-columns: 25% 50% 25%;
-    grid-template-rows: 40% 70%;
+    grid-template-rows: 25% 75%;
     background-color: blue;
 }
 
@@ -18,26 +18,30 @@
 .column {
     display: flex;
     flex-direction: column-reverse;
-    align-content: flex-end;
-    background-color: red;
+    align-items: center;
+    background-color: white;
     width: 10%;
-    height: 100%;
     flex-grow: 1;
+    border: solid 1px black;
 
 }
 
 .coinPlayer1 {
     background-color: silver;
     width: 40%;
-    height: 15%;
+    padding-top: 40%;
+    height: auto;
     border-radius: 50%;
+    margin-bottom: 3%;
 }
 
 .coinPlayer2 {
     background-color: goldenrod;
     width: 40%;
-    height: 15%;
+    padding-top: 40%;
+    height: auto;
     border-radius: 50%;
+    margin-bottom: 3%;
 }
 /* GAMEBOARD ELEMENTS */
 
