@@ -110,7 +110,7 @@ gameInteraction = {
     addCoinOnTheScreen : function () {
             if (gameInteraction.checkIfElementIsAColumn() && gameInteraction.checkIfTheColumnIsFull()) {
                 if (gameData.playerNumber === 1) {
-                    $(event.target).append('<div class="coinPlayer1"></div>');
+                    $('<div style="display: none;" class="coinPlayer1"></div>').appendTo($(event.target)).slideDown("fast");
                     gameData.updateCoinInDataBase(event);
                 }
                 else {
@@ -152,7 +152,7 @@ gameInteraction = {
     ifNotWin : function () {
         gameData.playerNumber = gameData.playerNumber === 1 ? 2:1;
         gameData.round++
-    },
+    }
 }
 
 //##################OBJECT IN CHARGE TO SHOW STUFF################################
@@ -162,7 +162,14 @@ gameDisplay = {
         for(let i = 0; i < 7; i++){
           $('.gameboard').append('<div class="column"></div>');
         }
-    },  
+    },
+
+
+   displayPlayersScore : function () {
+       $('#player1ScoreNumber').text(`${gameData.player1Score}`);
+       $('#player2AIScoreNumber').text(`${gameData.player2Score}`);
+   },
+    
 
     showScorNumbers : function () {
         $('.score.left').append('<h1 class"number left"></div>');
@@ -174,6 +181,10 @@ gameDisplay = {
 
     deleteCoinsFromScreen : function () {
         $('.column').empty();
+    },
+
+    playSoundtrack : function () {
+        $("#soundtrack").trigger('load').trigger('play');
     }
 }
 
@@ -192,6 +203,8 @@ $( document ).ready(function() {
     // GAME SETUP
     gameData.createBoardGrid();
     gameDisplay.showBoardGrid();
+    gameDisplay.displayPlayersScore();
+    //gameDisplay.playSoundtrack();
 
     //EVENT LISTENERS
     $(document).click(function (event) {

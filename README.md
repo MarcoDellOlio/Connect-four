@@ -26,3 +26,8 @@ https://www.figma.com/file/0KbRfjbJKSvgiFIhQbuyY3PI/Connect-4-Tie
 
 Game restarts
 https://www.figma.com/file/JY48bCqfa6sCaAhAYPRd4HrG/Connect-4-Game-restart
+
+
+References
+
+Glowing effect for coins https://zurb.com/playground/radioactive-buttons
