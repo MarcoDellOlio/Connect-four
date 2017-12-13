@@ -76,7 +76,13 @@ gameData = {
                 }
             }
         }
-    }
+    },
+
+    resetBoardGrid : function () {
+        gameData.boardGrid = [];
+        gameData.createBoardGrid();
+        }
+    
 
     
 
@@ -120,7 +126,12 @@ gameInteraction = {
 
     ifWin : function () {
         gameData.round = 0;
+        console.log('game round is ' + gameData.round);
         gameInteraction.updatePlayerScore();
+        console.log('the player 1 score is '+ gameData.player1Score);
+        gameData.resetBoardGrid();
+        console.log(gameData.boardGrid)
+        gameDisplay.deleteCoinsFromScreen();
         gameDisplay.showVictoryAlert();
     },
 
@@ -155,6 +166,10 @@ gameDisplay = {
 
     showVictoryAlert : function () {
         alert(`Good Job Player ${gameData.playerNumber} you won!`);
+    },
+
+    deleteCoinsFromScreen : function () {
+        $('.column').empty();
     }
 }
 
