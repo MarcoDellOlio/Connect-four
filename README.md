@@ -17,9 +17,16 @@ The purpose of this project is to apply our skills releted to:
 ---
 
 #### Play the game
-wonderful-bell-ae46a5.bitballoon.com
+connectsouls.bitballoon.com
 
 ---
+
+#### Play the game V2
+In the second version of this game the following features will be implemented:
+* Better AI
+* Theme (music, background) changing when playing aginst the AI
+* Increased responsivenss for mobile
+
 #### Project Material
 ###### Project Management
 [Trello](https://trello.com/b/Pn5Z5CJE)
