@@ -109,22 +109,21 @@ gameInteraction = {
     },
 
     addCoinOnTheScreen : function () {
-            if (gameInteraction.checkIfElementIsAColumn() && gameInteraction.checkIfTheColumnIsFull()) {
-                if (gameData.playerNumber === 1) {
-                    $(event.target).append('<div class="coin" id="coinPlayer1"></div>');
-                    gameData.updateCoinInDataBase(event);
-                }
-                else if (gameData.playerNumber === 2 && gameData.emily === false) {
-                    $(event.target).append('<div class="coin" id="coinPlayer2"></div>');
-                    gameData.updateCoinInDataBase(event);
-                }
+            
+        if (gameData.playerNumber === 1) {
+            $(event.target).append('<div class="coin" id="coinPlayer1"></div>');
+            gameData.updateCoinInDataBase(event);
+        }
                 
-                else  {
-                    $(event.target).append('<div class="coin" id="coinEmily"></div>');
+        else if (gameData.playerNumber === 2 && gameData.emily === false) {
+            $(event.target).append('<div class="coin" id="coinPlayer2"></div>');
+            gameData.updateCoinInDataBase(event);
+        }
+                
+        else  {
+            $(event.target).append('<div class="coin" id="coinEmily"></div>');
                     gameData.updateCoinInDataBase(event), 1500;
-                }    
-                   
-            }       
+        }              
     },
 
     checkForWin : function () {
@@ -180,25 +179,27 @@ gameDisplay = {
     showBoardGrid : function () {
         for(let i = 0; i < 7; i++){
           $('.gameboard').append('<div class="column hvr-float-shadow"></div>'); 
-        //   hvr-float-shadow
         }
     },
 
 
    displayPlayersScore : function () {
-       $('#player1ScoreNumber').text(`${gameData.player1Score}`);
-       $('#player2AIScoreNumber').text(`${gameData.player2Score}`);
-       if (gameData.player1Score > 0) {
-           $('#player1ScoreNumber').css('color','#91bd09');
-       }
+    $('<div class="scoreNumber" id="player1ScoreNumber"><div>').appendTo('.score.left')
+    $('<div class="scoreNumber" id="player2AIScoreNumber"><div>').appendTo('.score.right')
+    $('#player1ScoreNumber').text(`${gameData.player1Score}`);
+    $('#player2AIScoreNumber').text(`${gameData.player2Score}`);
+    
+    if (gameData.player1Score > 0) {
+        $('#player1ScoreNumber').css('color','#91bd09');
+    }
 
-       if (gameData.player2Score > 0 && gameData.emily === false) {
-            $('#player2AIScoreNumber').css('color','#3b4ad4');
-        }
+    if (gameData.player2Score > 0 && gameData.emily === false) {
+        $('#player2AIScoreNumber').css('color','#3b4ad4');
+    }
         
-        if (gameData.player2Score > 0 && gameData.emily === true) { 
-            $('#player2AIScoreNumber').css('color','red');
-        }
+    if (gameData.player2Score > 0 && gameData.emily === true) {
+        $('#player2AIScoreNumber').css('color','red');
+    }
     
    },
 
@@ -220,8 +221,6 @@ gameDisplay = {
 
 }
 
-
-
 //###############INVOKING ZONE######################
 
 
@@ -238,13 +237,15 @@ $( document ).ready(function() {
 
     //EVENT LISTENERS
     $(document).click(function (event) {
-        gameInteraction.addCoinOnTheScreen();//OK
-        gameInteraction.checkForWin();
-        if (gameData.win === true) {
-            gameInteraction.ifWin();
-        }
-        else {
-            gameInteraction.ifNotWin();
+        if (gameInteraction.checkIfElementIsAColumn() && gameInteraction.checkIfTheColumnIsFull()) {
+            gameInteraction.addCoinOnTheScreen();//OK
+            gameInteraction.checkForWin();
+            if (gameData.win === true) {
+                gameInteraction.ifWin();
+            }
+            else {
+                gameInteraction.ifNotWin();
+            }
         }
     })
 });
