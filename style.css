@@ -22,6 +22,7 @@
     flex-grow: 1;
 
 }
+
 .coin {
     width: 50%;
     padding-top: 50%;
@@ -105,7 +106,18 @@
     -webkit-animation-iteration-count: infinite;
 }
 
+/* TOP RESPONSIVE BOARD */
 
+.topboard {
+    grid-area: 1 / 2 / 2 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#activateEmily {
+    font-family: 'Orbitron', sans-serif;
+}
 
 /* ANIMATIONS */
 

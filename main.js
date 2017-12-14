@@ -62,8 +62,6 @@ gameData = {
         }
     },
 
-
-
     scanAllLeftDiagonal : function () {
         for(let column = 0; column <= 6 ; column++) {
             for(let row = 0; row <= 5; row++) {
@@ -86,13 +84,8 @@ gameData = {
         gameData.boardGrid = [];
         gameData.createBoardGrid();
     }
-    
-
-    
-
-    
-    
 }
+
 //###################OBJECT IN CHARGE TO INTERACT WITH THE USER#########################
 gameInteraction = {
     
@@ -170,6 +163,17 @@ gameInteraction = {
             gameData.round = 0;
         }
 
+    },
+
+    activateEmily : function () {
+        $('#activateEmily').click(function() {
+            if (gameData.emily===false) {
+                gameData.emily=true;
+            }
+            else {
+                gameData.emily=false;
+            }
+        })
     }
 }
 
@@ -182,8 +186,9 @@ gameDisplay = {
         }
     },
 
-
    displayPlayersScore : function () {
+    const mq = window.matchMedia( "(min-width: 500px)" )
+
     $('<div class="scoreNumber" id="player1ScoreNumber"><div>').appendTo('.score.left')
     $('<div class="scoreNumber" id="player2AIScoreNumber"><div>').appendTo('.score.right')
     $('#player1ScoreNumber').text(`${gameData.player1Score}`);
@@ -217,13 +222,9 @@ gameDisplay = {
     playSoundtrack : function () {
         $("#soundtrack").trigger('load').trigger('play');
     },
-
-
 }
 
 //###############INVOKING ZONE######################
-
-
 $( document ).ready(function() {
     console.log( "ready!" );
 
@@ -232,6 +233,7 @@ $( document ).ready(function() {
     gameDisplay.showBoardGrid();//OK
     gameDisplay.displayPlayersScore();//OK
     gameDisplay.showTurnIndicator();
+    gameInteraction.activateEmily();
     gameDisplay.playSoundtrack(); //Add Emily
    
 
