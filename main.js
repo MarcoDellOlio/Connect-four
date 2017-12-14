@@ -114,10 +114,15 @@ gameInteraction = {
                     $(event.target).append('<div class="coin" id="coinPlayer1"></div>');
                     gameData.updateCoinInDataBase(event);
                 }
-                else {
+                else if (gameData.playerNumber === 2 && gameData.emily === false) {
                     $(event.target).append('<div class="coin" id="coinPlayer2"></div>');
                     gameData.updateCoinInDataBase(event);
-                }   
+                }
+                
+                else  {
+                    $('.column').get(Math.floor(Math.random() * (6 - 0 + 1) + 0)).append('<div class="coin" id="coinPlayer2"></div>') 
+                }    
+                   
             }       
     },
 
@@ -149,7 +154,11 @@ gameInteraction = {
 
     ifNotWin : function () {
         gameData.playerNumber = gameData.playerNumber === 1 ? 2:1;
-        gameData.round++
+        gameData.round++;
+        if (gameData.playerNumber === 2 && gameData.emily === true) {
+            $('.column').get(Math.floor(Math.random() * (6 - 0 + 1) + 0)).click(event);
+            event.stopPropagation();
+        }
     }
 }
 
@@ -158,7 +167,8 @@ gameDisplay = {
 
     showBoardGrid : function () {
         for(let i = 0; i < 7; i++){
-          $('.gameboard').append('<div class="column hvr-float-shadow"></div>');
+          $('.gameboard').append('<div class="column"></div>'); 
+        //   hvr-float-shadow
         }
     },
 
@@ -170,9 +180,14 @@ gameDisplay = {
            $('#player1ScoreNumber').css('color','#91bd09');
        }
 
-       if (gameData.player2Score > 0) {
-        $('#player2AIScoreNumber').css('color','#3b4ad4');
-    }
+       if (gameData.player2Score > 0 && gameData.emily === false) {
+            $('#player2AIScoreNumber').css('color','#3b4ad4');
+        }
+        
+        if (gameData.player2Score > 0 && gameData.emily === true) { 
+            $('#player2AIScoreNumber').css('color','red');
+        }
+    
    },
     
 
@@ -202,14 +217,14 @@ $( document ).ready(function() {
     console.log( "ready!" );
 
     // GAME SETUP
-    gameData.createBoardGrid();
-    gameDisplay.showBoardGrid();
-    gameDisplay.displayPlayersScore();
+    gameData.createBoardGrid();//OK
+    gameDisplay.showBoardGrid();//OK
+    gameDisplay.displayPlayersScore();//OK
     gameDisplay.playSoundtrack(); //Add Emily
 
     //EVENT LISTENERS
     $(document).click(function (event) {
-        gameInteraction.addCoinOnTheScreen();
+        gameInteraction.addCoinOnTheScreen();//OK
         gameInteraction.checkForWin();
         if (gameData.win === true) {
             gameInteraction.ifWin();
