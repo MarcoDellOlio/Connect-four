@@ -175,6 +175,13 @@ gameInteraction = {
                 gameData.emily=false;
             }
         })
+    },
+
+    makeWelcomeMessageDisappear : function () {
+        $('#welMessage').hover(function(){
+            $('#welMessage').fadeOut(1000);
+        }
+        )
     }
 }
 
@@ -230,6 +237,10 @@ gameDisplay = {
 
     playResetSound : function () {
         $("#resetSound").trigger('load').trigger('play');
+    },
+
+    generateWelcomeMessage : function () {
+        $("<div class = 'welcomeMessage pulse' id = 'welMessage'>Connect four souls dropping them below</div>").appendTo($('.wrapper'));
     }
 }
 
@@ -244,6 +255,8 @@ $( document ).ready(function() {
     gameDisplay.showTurnIndicator();
     gameInteraction.activateEmily();
     gameDisplay.playSoundtrack(); //Add Emily
+    gameDisplay.generateWelcomeMessage();
+    gameInteraction.makeWelcomeMessageDisappear();
    
 
     //EVENT LISTENERS

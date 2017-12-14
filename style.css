@@ -50,6 +50,21 @@
     -webkit-animation-duration: 2s, 1s;
     -webkit-animation-iteration-count: infinite, 1;
 }
+
+.welcomeMessage {
+    width: 60vw;
+    height: 15vw;
+    text-align: center;
+    line-height: 15vw;
+    position: absolute;
+    z-index: 999;
+    top: 25%;
+    left: 20%;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3vh;
+    color: rgba(173, 173, 173, 0.753);
+}
+
 /* GAMEBOARD ELEMENTS */
 
 
