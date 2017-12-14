@@ -120,7 +120,8 @@ gameInteraction = {
                 }
                 
                 else  {
-                    $('.column').get(Math.floor(Math.random() * (6 - 0 + 1) + 0)).append('<div class="coin" id="coinPlayer2"></div>') 
+                    $(event.target).append('<div class="coin" id="coinEmily"></div>');
+                    gameData.updateCoinInDataBase(event);
                 }    
                    
             }       

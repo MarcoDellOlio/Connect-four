@@ -43,6 +43,12 @@
     -webkit-animation-duration: 2s, 1s;
     -webkit-animation-iteration-count: infinite, 1;
 }
+
+#coinEmily {
+    -webkit-animation-name: redPulse, bounceInDown;
+    -webkit-animation-duration: 2s, 1s;
+    -webkit-animation-iteration-count: infinite, 1;
+}
 /* GAMEBOARD ELEMENTS */
 
 
@@ -92,6 +98,12 @@
     from { background-color: #3b4ad4; -webkit-box-shadow: 0 0 9px #333; }
     50% { background-color: #3b4ad4; -webkit-box-shadow: 0 0 18px #3b4ad4; }
     to { background-color: #3b4ad4; -webkit-box-shadow: 0 0 9px #333; }
+  }
+
+  @-webkit-keyframes redPulse {
+    from { background-color: #d81616; -webkit-box-shadow: 0 0 9px #333; }
+    50% { background-color: #d81616; -webkit-box-shadow: 0 0 18px #d81616; }
+    to { background-color: #d81616; -webkit-box-shadow: 0 0 9px #333; }
   }
 
   .hvr-float-shadow {
