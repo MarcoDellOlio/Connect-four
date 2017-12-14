@@ -11,8 +11,7 @@ gameData = {
     createBoardGrid : function () {
         for(let i = 0; i<7; i++){
         this.boardGrid.push(new Array(6).fill(0));
-        }
-        
+        }  
     },
 
     updateCoinInDataBase : function (event) {
@@ -164,7 +163,6 @@ gameInteraction = {
             setTimeout(gameDisplay.deleteCoinsFromScreen, 1500);
             gameData.round = 0;
         }
-
     },
 
     activateEmily : function () {
@@ -222,7 +220,6 @@ gameDisplay = {
             $('#player2AIScoreNumber').toggleClass('player2TurnBox', gameData.playerNumber === 2);
             $('#player2AIScoreNumber').toggleClass('.emilyTurnBox',gameData.playerNumber === 2 && gameData.emily);   
     },
-       
     
     deleteCoinsFromScreen : function () {
         $('.column').empty();
@@ -245,11 +242,11 @@ gameDisplay = {
     }
 }
 
-//###############INVOKING ZONE######################
+//###############INVOKING ZONE START######################
 $( document ).ready(function() {
     console.log( "ready!" );
 
-    // GAME SETUP
+    // GAME SETUP (Everything happening when the page loads)
     gameData.createBoardGrid();//OK
     gameDisplay.showBoardGrid();//OK
     gameDisplay.displayPlayersScore();//OK
@@ -260,7 +257,7 @@ $( document ).ready(function() {
     gameInteraction.makeWelcomeMessageDisappear();
    
 
-    //EVENT LISTENERS
+    //EVENT LISTENERS (Everything happening when the user clicks)
     $(document).click(function (event) {
         if (gameInteraction.checkIfElementIsAColumn() && gameInteraction.checkIfTheColumnIsFull()) {
             gameInteraction.addCoinOnTheScreen();//OK
@@ -275,4 +272,4 @@ $( document ).ready(function() {
         }
     })
 });
-//###############INVOKING ZONE######################
+//###############INVOKING ZONE END######################
