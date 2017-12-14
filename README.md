@@ -32,3 +32,5 @@ References
 
 Glowing effect for coins https://zurb.com/playground/radioactive-buttons
 SoundTrack : "Una mattina" (A morning) by Ludovico Einaudi
+
+Swoosh Sound https://freesound.org/people/Electroviolence/sounds/234553/

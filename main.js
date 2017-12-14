@@ -132,6 +132,7 @@ gameInteraction = {
         gameData.resetBoardGrid();
         setTimeout(gameDisplay.deleteCoinsFromScreen, 1500);
         setTimeout(gameDisplay.displayPlayersScore,2000);
+        setTimeout(gameDisplay.playResetSound, 1700);
         gameData.win = false;
     },
 
@@ -225,6 +226,10 @@ gameDisplay = {
 
     playCoinDrop : function () {
         $("#coinDropSound").trigger('load').trigger('play');
+    },
+
+    playResetSound : function () {
+        $("#resetSound").trigger('load').trigger('play');
     }
 }
 
