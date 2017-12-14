@@ -154,13 +154,23 @@ gameInteraction = {
     },
 
     ifNotWin : function () {
-        gameData.playerNumber = gameData.playerNumber === 1 ? 2:1;
-        gameDisplay.showTurnIndicator();
         gameData.round++;
-        if (gameData.playerNumber === 2 && gameData.emily === true) {
-           $('.column').get(Math.floor(Math.random() * (6 - 0 + 1) + 0)).click(event), 2000;
-           event.stopPropagation();
+        if (gameData.round < 35) {
+            gameData.playerNumber = gameData.playerNumber === 1 ? 2:1;
+            gameDisplay.showTurnIndicator();
+            
+            if (gameData.playerNumber === 2 && gameData.emily === true) {
+               $('.column').get(Math.floor(Math.random() * (6 - 0 + 1) + 0)).click(event), 2000;
+               event.stopPropagation();
+            }
         }
+
+        else {
+            gameData.resetBoardGrid();
+            setTimeout(gameDisplay.deleteCoinsFromScreen, 1500);
+            gameData.round = 0;
+        }
+
     }
 }
 
@@ -209,10 +219,6 @@ gameDisplay = {
 
 
 }
-
-
-
-
 
 
 
