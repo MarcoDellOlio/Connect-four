@@ -97,7 +97,7 @@ gameData = {
 gameInteraction = {
     
     checkIfElementIsAColumn : function () {
-        if ($(event.target).attr("class") === "column") {
+        if ($(event.target).attr("class") === "column hvr-float-shadow") {
             return true;
         }
     },
@@ -168,7 +168,7 @@ gameDisplay = {
 
     showBoardGrid : function () {
         for(let i = 0; i < 7; i++){
-          $('.gameboard').append('<div class="column"></div>'); 
+          $('.gameboard').append('<div class="column hvr-float-shadow"></div>'); 
         //   hvr-float-shadow
         }
     },
