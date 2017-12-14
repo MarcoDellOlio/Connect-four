@@ -17,7 +17,8 @@ The purpose of this project is to apply our skills releted to:
 ---
 
 #### Play the game
-connectsouls.bitballoon.com
+
+[click here!](https://connectsouls.bitballoon.com)
 
 ---
 
