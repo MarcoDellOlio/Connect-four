@@ -121,7 +121,7 @@ gameInteraction = {
                 
                 else  {
                     $(event.target).append('<div class="coin" id="coinEmily"></div>');
-                    gameData.updateCoinInDataBase(event);
+                    gameData.updateCoinInDataBase(event), 1500;
                 }    
                    
             }       
@@ -155,10 +155,11 @@ gameInteraction = {
 
     ifNotWin : function () {
         gameData.playerNumber = gameData.playerNumber === 1 ? 2:1;
+        gameDisplay.showTurnIndicator();
         gameData.round++;
         if (gameData.playerNumber === 2 && gameData.emily === true) {
-            $('.column').get(Math.floor(Math.random() * (6 - 0 + 1) + 0)).click(event);
-            event.stopPropagation();
+           $('.column').get(Math.floor(Math.random() * (6 - 0 + 1) + 0)).click(event), 2000;
+           event.stopPropagation();
         }
     }
 }
@@ -190,19 +191,23 @@ gameDisplay = {
         }
     
    },
-    
 
-    showScorNumbers : function () {
-        $('.score.left').append('<h1 class"number left"></div>');
+   showTurnIndicator : function () {
+            $('#player1ScoreNumber').toggleClass('player1TurnBox', gameData.playerNumber === 1);
+            $('#player2AIScoreNumber').toggleClass('player2TurnBox', gameData.playerNumber === 2);
+            $('#player2AIScoreNumber').toggleClass('.emilyTurnBox',gameData.playerNumber === 2 && gameData.emily);   
     },
-
+       
+    
     deleteCoinsFromScreen : function () {
         $('.column').empty();
     },
 
     playSoundtrack : function () {
         $("#soundtrack").trigger('load').trigger('play');
-    }
+    },
+
+
 }
 
 
@@ -221,7 +226,9 @@ $( document ).ready(function() {
     gameData.createBoardGrid();//OK
     gameDisplay.showBoardGrid();//OK
     gameDisplay.displayPlayersScore();//OK
+    gameDisplay.showTurnIndicator();
     gameDisplay.playSoundtrack(); //Add Emily
+   
 
     //EVENT LISTENERS
     $(document).click(function (event) {
@@ -234,11 +241,5 @@ $( document ).ready(function() {
             gameInteraction.ifNotWin();
         }
     })
-
-    
-
-
-
 });
-
 //###############INVOKING ZONE######################

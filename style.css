@@ -73,18 +73,39 @@
     align-self: end;
 }
 
-
-
 .scoreNumber {
     grid-area: 2 / 2 / 3 / 3;
+    width: 50%;
+    height: 38%;
+    text-align: center;
+    line-height: 11vh;
+    border-radius: 10%;
     justify-self: center;
     align-self: center;
     font-family: 'Orbitron', sans-serif;
     font-size: 7vh;
-    color:rgba(224, 224, 224, 0.329);
-
-    
+    color:rgba(224, 224, 224, 0.329);   
 }
+
+.player1TurnBox {
+    -webkit-animation-name: greenPulseBorder;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+}
+
+.player2TurnBox {
+    -webkit-animation-name: bluePulseBorder;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+}
+
+.emilyTurnBox {
+    -webkit-animation-name: redPulseBorder;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+}
+
+
 
 /* ANIMATIONS */
 
@@ -106,6 +127,24 @@
     to { background-color: #d81616; -webkit-box-shadow: 0 0 9px #333; }
   }
 
+  @-webkit-keyframes greenPulseBorder {
+    from { border-bottom-color: #749a02; -webkit-box-shadow: 0 0 12px #333; }
+    50% { border-bottom-color: #91bd09; -webkit-box-shadow: 0 0 12px #91bd09; }
+    to { border-bottom-color: #749a02; -webkit-box-shadow: 0 0 12px #333; }
+  }
+
+  @-webkit-keyframes bluePulseBorder {
+    from { border-bottom-color: #3b4ad4; -webkit-box-shadow: 0 0 12px #333; }
+    50% { border-bottom-color: #3b4ad4; -webkit-box-shadow: 0 0 12px #3b4ad4; }
+    to { border-bottom-color: #3b4ad4; -webkit-box-shadow: 0 0 12px #333; }
+  }
+
+  @-webkit-keyframes redPulseborder {
+    from { border-bottom-color: #d81616; -webkit-box-shadow: 0 0 12px #333; }
+    50% { border-bottom-color: #d81616; -webkit-box-shadow: 0 0 12px #d81616; }
+    to { border-bottom-color: #d81616; -webkit-box-shadow: 0 0 12px #333; }
+  }
+
   .hvr-float-shadow {
     -webkit-transform: perspective(1px) translateZ(0);
     transform: perspective(1px) translateZ(0);
@@ -116,6 +155,7 @@
     -webkit-transition-property: transform;
     transition-property: transform;
   }
+
   .hvr-float-shadow:before {
     pointer-events: none;
     position: absolute;
