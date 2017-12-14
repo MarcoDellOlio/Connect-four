@@ -153,7 +153,8 @@ gameInteraction = {
             gameDisplay.showTurnIndicator();
             
             if (gameData.playerNumber === 2 && gameData.emily === true) {
-               $('.column').get(Math.floor(Math.random() * (6 - 0 + 1) + 0)).click(event), 2000;
+                setTimeout(() => $('.column').get(Math.floor(Math.random() * (6 - 0 + 1) + 0)).click(event), 2000);
+               
                event.stopPropagation();
             }
         }
