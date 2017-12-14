@@ -222,6 +222,10 @@ gameDisplay = {
     playSoundtrack : function () {
         $("#soundtrack").trigger('load').trigger('play');
     },
+
+    playCoinDrop : function () {
+        $("#coinDropSound").trigger('load').trigger('play');
+    }
 }
 
 //###############INVOKING ZONE######################
@@ -241,6 +245,7 @@ $( document ).ready(function() {
     $(document).click(function (event) {
         if (gameInteraction.checkIfElementIsAColumn() && gameInteraction.checkIfTheColumnIsFull()) {
             gameInteraction.addCoinOnTheScreen();//OK
+            gameDisplay.playCoinDrop();
             gameInteraction.checkForWin();
             if (gameData.win === true) {
                 gameInteraction.ifWin();
