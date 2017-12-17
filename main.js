@@ -7,6 +7,7 @@ gameData = {
     playerNumber : 1,
     win : false,
     emily : false,
+    welcometext : "Play with a friend, connect 4 souls to win the game. Or play with <span class='emily'>Emily</span> <br><br> <span class='animated infinite pulse'>Click to start</span>",
     
     createBoardGrid : function () {
         for(let i = 0; i<7; i++){
@@ -152,7 +153,7 @@ gameInteraction = {
             gameDisplay.showTurnIndicator();
             
             if (gameData.playerNumber === 2 && gameData.emily === true) {
-                setTimeout(() => $('.column').get(Math.floor(Math.random() * (6 - 0 + 1) + 0)).click(event), 2000);
+                setTimeout(() => $('.column').get(Math.floor(Math.random() * (6 - 0 + 1) + 0)).click(event), 1500);
                
                event.stopPropagation();
             }
@@ -177,7 +178,7 @@ gameInteraction = {
     },
 
     makeWelcomeMessageDisappear : function () {
-        $('#welMessage').hover(function(){
+        $('#welMessage').click(function(){
             $('#welMessage').fadeOut(1000);
         }
         )
@@ -218,7 +219,7 @@ gameDisplay = {
    showTurnIndicator : function () {
             $('#player1ScoreNumber').toggleClass('player1TurnBox', gameData.playerNumber === 1);
             $('#player2AIScoreNumber').toggleClass('player2TurnBox', gameData.playerNumber === 2);
-            $('#player2AIScoreNumber').toggleClass('.emilyTurnBox',gameData.playerNumber === 2 && gameData.emily);   
+            $('#player2AIScoreNumber').toggleClass('emilyTurnBox',gameData.playerNumber === 2 && gameData.emily === true);   
     },
     
     deleteCoinsFromScreen : function () {
@@ -238,7 +239,7 @@ gameDisplay = {
     },
 
     generateWelcomeMessage : function () {
-        $("<div class = 'welcomeMessage pulse' id = 'welMessage'>Connect four souls dropping them below</div>").appendTo($('.wrapper'));
+        $(`<div class = 'welcomeMessage pulse' id = 'welMessage'>${gameData.welcometext}</div>`).appendTo($('.wrapper'));
     }
 }
 

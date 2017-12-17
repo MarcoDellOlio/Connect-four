@@ -21,6 +21,7 @@
     background-color: white;
     width: 10%;
     flex-grow: 1;
+    margin-bottom: 3%;
 
 }
 
@@ -63,6 +64,11 @@
     font-family: 'Orbitron', sans-serif;
     font-size: 3vh;
     color: rgba(173, 173, 173, 0.753);
+    line-height: 1.5;
+}
+
+.emily {
+    color: #d81616;
 }
 
 /* SCORE BOARDS ELEMENT */
@@ -164,7 +170,7 @@
     to { border-bottom-color: #3b4ad4; -webkit-box-shadow: 0 0 12px #333; }
   }
 
-  @-webkit-keyframes redPulseborder {
+  @-webkit-keyframes redPulseBorder {
     from { border-bottom-color: #d81616; -webkit-box-shadow: 0 0 12px #333; }
     50% { border-bottom-color: #d81616; -webkit-box-shadow: 0 0 12px #d81616; }
     to { border-bottom-color: #d81616; -webkit-box-shadow: 0 0 12px #333; }
