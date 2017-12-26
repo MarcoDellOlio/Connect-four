@@ -90,7 +90,7 @@ gameData = {
 gameInteraction = {
     
     checkIfElementIsAColumn : function () {
-        if ($(event.target).attr("class") === "column hvr-float-shadow") {
+        if ($(event.target).attr("class").indexOf("column") > -1) {
             return true;
         }
     },
@@ -240,6 +240,14 @@ gameDisplay = {
 
     generateWelcomeMessage : function () {
         $(`<div class = 'welcomeMessage pulse' id = 'welMessage'>${gameData.welcometext}</div>`).appendTo($('.wrapper'));
+    },
+
+    leftBorder : function () {
+        $('.column').eq(0).addClass('glowingLeftLine');
+    },
+
+    rightBorder : function () {
+        $('.column').eq(6).addClass('glowingRightLine');
     }
 }
 
@@ -252,6 +260,8 @@ $( document ).ready(function() {
     gameDisplay.showBoardGrid();//OK
     gameDisplay.displayPlayersScore();//OK
     gameDisplay.showTurnIndicator();
+    gameDisplay.leftBorder();
+    gameDisplay.rightBorder();
     gameInteraction.activateEmily();
     gameDisplay.playSoundtrack(); //Add Emily
     gameDisplay.generateWelcomeMessage();

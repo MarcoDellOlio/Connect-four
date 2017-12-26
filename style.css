@@ -12,6 +12,7 @@
 .gameboard {
     display: flex;
     grid-area: 2 / 2 / 3 / 2;
+    align-items: flex-end;
 }
 
 .column {
@@ -22,7 +23,20 @@
     width: 10%;
     flex-grow: 1;
     margin-bottom: 3%;
+    height: 65%;
+    border-radius: 10%;
+}
 
+.glowingLeftLine{
+    -webkit-animation-name: leftColumnBorder;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+}
+
+.glowingRightLine{
+    -webkit-animation-name: rightColumnBorder;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
 }
 
 .coin {
@@ -175,6 +189,23 @@
     50% { border-bottom-color: #d81616; -webkit-box-shadow: 0 0 12px #d81616; }
     to { border-bottom-color: #d81616; -webkit-box-shadow: 0 0 12px #333; }
   }
+
+  @-webkit-keyframes leftColumnBorder {
+    from { border-left: solid 2px #749a02;}
+    25% { border-left: solid 2px #333;}
+    50% { border-left: solid 2px #91bd09; }
+    75% { border-left: solid 2px #333;}
+    to { border-left: solid 2px #749a02; }
+  }
+
+  @-webkit-keyframes rightColumnBorder {
+    from { border-right: solid 2px #3b4ad4;}
+    25% { border-right: solid 2px #333;}
+    50% { border-right: solid 2px #3b4ad4; }
+    75% { border-right: solid 2px #333;}
+    to { border-right: solid 2px #3b4ad4; }
+  }
+
 
   .hvr-float-shadow {
     -webkit-transform: perspective(1px) translateZ(0);
