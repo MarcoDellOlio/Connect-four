@@ -67,18 +67,27 @@
 }
 
 .welcomeMessage {
-    width: 60vw;
-    height: 15vw;
+    width: 50vw;
+    height: 40vw;
     text-align: center;
     line-height: 15vw;
     position: absolute;
     z-index: 999;
     top: 25%;
-    left: 20%;
+    left: 25%;
     font-family: 'Orbitron', sans-serif;
     font-size: 3vh;
     color: rgba(173, 173, 173, 0.753);
     line-height: 1.5;
+}
+
+.arrowContainer {
+    display: flex;
+    margin-top: 10%;
+}
+
+.arrow {
+    flex-grow: 1;
 }
 
 .emily {
@@ -148,9 +157,25 @@
     align-items: center;
 }
 
-#activateEmily {
+.topEmilySwitch{
+    width: 20%;
+    height: auto;
+    font-size: 2vh;
     font-family: 'Orbitron', sans-serif;
 }
+
+.emilyOn {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+#activateEmily {
+    width: 100%;
+    font-size: 2vh;
+}
+
+
 
 /* ANIMATIONS */
 

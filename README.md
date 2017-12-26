@@ -1,6 +1,15 @@
 
 # Connect soul
 
+#### V.2 is live!
+
+Based on your feedbacks the following features were implemented:
+* Added gameboard borders
+* UX improved
+* Responsiveness improved
+* Soundtrack is on infinite loop now
+
+---
 Connect Soul is a webgame based on the famous Connect-4 (you can buy it [here](https://www.hasbro.com/en-us/product/connect-4-game:80FB5BCA-5056-9047-F5F4-5EB5DF88DAF4))
 
 ---

@@ -7,7 +7,7 @@ gameData = {
     playerNumber : 1,
     win : false,
     emily : false,
-    welcometext : "Play with a friend, connect 4 souls to win the game. Or play with <span class='emily'>Emily</span> <br><br> <span class='animated infinite pulse'>Click to start</span>",
+    welcometext : "Play this version of the famous game Connect 4. <br>  Start playing with a friend or play with <span class='emily'>Emily</span> <br><br> <span class='animated infinite pulse'>Click to start</span>",
     
     createBoardGrid : function () {
         for(let i = 0; i<7; i++){
@@ -170,16 +170,18 @@ gameInteraction = {
         $('#activateEmily').click(function() {
             if (gameData.emily===false) {
                 gameData.emily=true;
+                $(event.target).addClass('emilyOn');
             }
             else {
                 gameData.emily=false;
+                $(event.target).removeClass('emilyOn');
             }
         })
     },
 
     makeWelcomeMessageDisappear : function () {
         $('#welMessage').click(function(){
-            $('#welMessage').fadeOut(1000);
+            $('#welMessage').fadeOut(500);
         }
         )
     }
@@ -240,6 +242,10 @@ gameDisplay = {
 
     generateWelcomeMessage : function () {
         $(`<div class = 'welcomeMessage pulse' id = 'welMessage'>${gameData.welcometext}</div>`).appendTo($('.wrapper'));
+        $('#welMessage').append('<div class="arrowContainer"></div>');
+        for(let i = 0; i < 7; i++){
+            $('.arrowContainer').append('<div class="arrow"><i class="fa fa-arrow-down faa-falling animated" aria-hidden="true"></i></div>'); 
+          }
     },
 
     leftBorder : function () {
@@ -249,6 +255,7 @@ gameDisplay = {
     rightBorder : function () {
         $('.column').eq(6).addClass('glowingRightLine');
     }
+
 }
 
 //###############INVOKING ZONE START######################
